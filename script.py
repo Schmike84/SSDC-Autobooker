@@ -28,7 +28,7 @@ while True:
         try:
             with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
                 smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
-            msg['Subject'] = 'Car lesson booked'
+            msg['Subject'] = 'Motorcycle lesson booked'
             msg['From'] = EMAIL_ADDRESS
             msg['To'] = EMAIL_ADDRESS
             break
@@ -120,9 +120,9 @@ while True:
 
 
 while True:
-    location = input("Enter location (Woodlands/Ang Mo Kio): ")
-    if location not in {'Woodlands','Ang Mo Kio'}:
-        print("Please enter either Woodlands/Ang Mo Kio")
+    lesson = input("Enter lesson (1/2/3/4/5/6/7/RC/RR): ")
+    if lesson not in {'1','2','3','4','5','6','7','RC','RR'}:
+        print("Please enter either 1/2/3/4/5/6/7/RC/RR")
         continue
     else:
         break
@@ -133,7 +133,7 @@ id_list = []
 while True:
 
     try:
-        x = [int(x) for x in input("Enter your session number (1-6 separated by whitespace): ").split()]
+        x = [int(x) for x in input("Enter your session number (1/2/3/4/5/6 separated by whitespace): ").split()]
         for a in x:
             if a < 1 or a > 6:
                 print("Enter valid numbers")
@@ -161,8 +161,8 @@ date_elem = driver.find_element_by_id("SelectedDate")
 date_elem.send_keys(Keys.CONTROL + "a")
 date_elem.send_keys(Keys.DELETE)
 date_elem.send_keys(input_date)
-loc_select = Select(driver.find_element_by_id('SelectedLocation'))
-loc_select.select_by_value(location)
+lesson_select = Select(driver.find_element_by_id('SelectedSessionType'))
+lesson_select.select_by_value(lesson)
 
 driver.find_element_by_id("btn_checkforava").click()
 
